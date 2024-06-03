@@ -1,0 +1,32 @@
+﻿<Window x:Class="lolkek.Win_.Auto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lolkek.Win_"
+        mc:Ignorable="d"
+        Title="Auto" ResizeMode="NoResize" Height="300" Width="300">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Авторизация">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Margin="5" >Логин</TextBlock>
+                    <TextBox MinWidth="100" Margin="5" x:Name="AuLog"/>
+                    <TextBlock Margin="5">Пароль</TextBlock>
+                    <PasswordBox Margin="5" x:Name="AuPas" />
+                    <Button Margin="5" x:Name="AuBut" Content="Вход" Click="AuBut_Click" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Регистрация">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Margin="5" >Логин</TextBlock>
+                    <TextBox MinWidth="100" Margin="5" x:Name="ReLog"/>
+                    <TextBlock Margin="5">Пароль</TextBlock>
+                    <PasswordBox Margin="5" x:Name="RePas" />
+                    <Button Margin="5" x:Name="ReBut" Content="Зарегистрироваться" Click="ReBut_Click" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
