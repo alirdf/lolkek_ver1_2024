@@ -16,12 +16,15 @@
             <TextBox MinWidth="100" Margin="5" x:Name="TbПоиск" TextChanged="TbПоиск_TextChanged" ></TextBox>
             <ComboBox Margin="5" 
                       x:Name="Cbфильтр" 
-                      SelectionChanged="Cbфильтр_SelectionChanged" 
-                      />
+                      SelectionChanged="Cbфильтр_SelectionChanged">
+                <ComboBoxItem>По умолчанию</ComboBoxItem>
+                <ComboBoxItem>По возрастнию</ComboBoxItem>
+                <ComboBoxItem>По убыванию</ComboBoxItem>
+            </ComboBox>
             <ComboBox Margin="5" 
                       x:Name="CbСортировка" 
                       SelectionChanged="CbСортировка_SelectionChanged"
-                      SelectedItem="{Binding TbКатегории}"
+                      
                       DisplayMemberPath="Название"
                       />
             <Button Content="Вход" Margin="5" x:Name="BtnВход" Click="BtnВход_Click"/>

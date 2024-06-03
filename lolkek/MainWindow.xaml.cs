@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace lolkek
 {
@@ -25,36 +26,54 @@ namespace lolkek
         public MainWindow()
         {
             InitializeComponent();
-            var a = lolkekEntities.GetContext().TbТовары.ToList();
-            a.Insert(0, new TbТовары { Название = "Все" });
+            var alltyp = lolkekEntities.GetContext().TbКатегории.ToList();
+            alltyp.Insert(0, new DB_.TbКатегории
+            {
+                Название = "Все типы"
+            });
+
+            CbСортировка.ItemsSource = alltyp;
             CbСортировка.SelectedIndex = 0;
-            CbСортировка.ItemsSource = a;
             lv1.ItemsSource = lolkekEntities.GetContext().TbТовары.ToList();
         }
 
         private void Update()
         {
-            var b = CbСортировка.SelectedItem as TbКатегории; 
-            IQueryable<TbТовары> a = lolkekEntities.GetContext().TbТовары;
-            if(b.Код_Категории != 0)
+            var selectedCategory = CbСортировка.SelectedItem as TbКатегории;
+            IQueryable<TbТовары> query = lolkekEntities.GetContext().TbТовары.Include(mk => mk.TbКатегории);
+
+            if (selectedCategory.Код_Категории != 0)
             {
-                a = a.Where(x =>x.Категория == b.Код_Категории);
-            }
-            if (string.IsNullOrEmpty(TbПоиск.Text))
-            {
-                a = a.Where(x => x.Название.Contains(TbПоиск.Text) || x.TbКатегории.Название.Contains(TbПоиск.Text));
+                query = query.Where(t => t.Категория == selectedCategory.Код_Категории);
             }
 
+            if (!string.IsNullOrEmpty(TbПоиск.Text))
+            {
+                query = query.Where(t => t.Название.Contains(TbПоиск.Text) ||
+                                        t.TbКатегории.Название.Contains(TbПоиск.Text) ||
+                                        t.Описание.Contains(TbПоиск.Text));
+            }
+
+            switch (Cbфильтр.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    query = query.OrderByDescending(t => t.Название);
+                    break;
+                case 2:
+                    query = query.OrderBy(t => t.Название);
+                    break;
+            }
+
+            lv1.ItemsSource = query.ToList();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
+        
 
         private void TbПоиск_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Update();
         }
 
         private void CbСортировка_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,7 +83,7 @@ namespace lolkek
 
         private void Cbфильтр_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Update();
         }
 
         private void BtnВход_Click(object sender, RoutedEventArgs e)
