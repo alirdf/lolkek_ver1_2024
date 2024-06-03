@@ -172,6 +172,7 @@
     <Folder Include="Resorses_\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB_\lolkek.sql" />
     <Content Include="DB_\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

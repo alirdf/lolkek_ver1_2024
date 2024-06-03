@@ -34,11 +34,15 @@ namespace lolkek
 
         private void Update()
         {
-            var b = CbСортировка.SelectedItem as TbТовары; 
+            var b = CbСортировка.SelectedItem as TbКатегории; 
             IQueryable<TbТовары> a = lolkekEntities.GetContext().TbТовары;
-            if(b.Код_Товара != 0)
+            if(b.Код_Категории != 0)
             {
-                a = a.Where(x =>x.Категория == b.Код_Товара);
+                a = a.Where(x =>x.Категория == b.Код_Категории);
+            }
+            if (string.IsNullOrEmpty(TbПоиск.Text))
+            {
+                a = a.Where(x => x.Название.Contains(TbПоиск.Text) || x.TbКатегории.Название.Contains(TbПоиск.Text));
             }
 
         }
