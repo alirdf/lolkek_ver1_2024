@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:lolkek"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="800">
+        
+    
     <Grid>
+            
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
+  
+       
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Margin="5">Поиск</TextBlock>
             <TextBox MinWidth="100" Margin="5" x:Name="TbПоиск" TextChanged="TbПоиск_TextChanged" ></TextBox>
@@ -40,6 +46,7 @@
                 x:Name="BtnВход" 
                 Click="BtnВход_Click"/>
         </StackPanel>
+  
         <ScrollViewer Grid.Row="1">
             <ListView x:Name="lv1">
                 <ListView.ItemTemplate>
@@ -71,5 +78,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
+        
     </Grid>
+    
 </Window>

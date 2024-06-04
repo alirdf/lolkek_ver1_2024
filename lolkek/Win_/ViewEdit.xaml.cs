@@ -65,14 +65,16 @@ namespace lolkek.Win_
 
         private void BtnРедактировать_Click(object sender, RoutedEventArgs e)
         {
-            Win_.AddEdit a = new Win_.AddEdit((sender as Button).
-            DataContext as TbТовары);
-            a.Show();
+            Win_.AddEdit a = new Win_.AddEdit((sender as Button).DataContext as TbТовары);
+            a.ShowDialog();
+            lv1.ItemsSource = lolkekEntities.GetContext().TbТовары.ToList();
         }
         private void BtnДобавить_Click(object sender, RoutedEventArgs e)
         {
             Win_.AddEdit a = new Win_.AddEdit(null);
-            a.Show();
+            a.ShowDialog();
+            lv1.ItemsSource = lolkekEntities.GetContext().TbТовары.ToList();
+
         }
       
 

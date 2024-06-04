@@ -29,9 +29,7 @@ namespace lolkek.Win_
                 t1 = t2;
             DataContext = t1;
             InitializeComponent();
-            CbКатегории.ItemsSource = 
-            lolkekEntities.GetContext().
-            TbКатегории.ToList();
+            CbКатегории.ItemsSource =lolkekEntities.GetContext().TbКатегории.ToList();
         }
 
         private void btBrowse_Click(object sender, RoutedEventArgs e)

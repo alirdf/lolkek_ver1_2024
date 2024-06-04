@@ -90,7 +90,7 @@ namespace lolkek
         {
             Win_.Auto a = new Win_.Auto();
             a.Show();
-            
+            Close();
         }
     }
 }

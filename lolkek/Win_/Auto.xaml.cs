@@ -31,14 +31,22 @@ namespace lolkek.Win_
             
             try
             {
-                var user = lolkekEntities.GetContext().TbПользоавтели.
-                    FirstOrDefault(x => x.Логин == AuLog.Text 
+                var user = lolkekEntities.GetContext().
+                    TbПользоавтели.FirstOrDefault(x => x.Логин == AuLog.Text 
                     && x.Пароль == AuPas.Password);
-                if (user != null)
+                if (user != null )
                 {
-                    Win_.ViewEdit a = new Win_.ViewEdit();
-                    a.Show();
-                    this.Close();
+                    switch(user.Роль)
+                    {
+                        case 1:
+                            Win_.ViewEdit a = new Win_.ViewEdit();
+                            a.Show();
+                            this.Close();
+
+                            break;
+
+                    }
+                   
                     
                 }
                 else
