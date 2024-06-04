@@ -14,7 +14,7 @@
                     <TextBox MinWidth="100" Margin="5" x:Name="AuLog"/>
                     <TextBlock Margin="5">Пароль</TextBlock>
                     <PasswordBox Margin="5" x:Name="AuPas" />
-                    <Button Margin="5" x:Name="AuBut" Content="Вход" Click="AuBut_Click" />
+                    <Button Background="DarkOrange" Foreground="White" Margin="5" x:Name="AuBut" Content="Вход" Click="AuBut_Click" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Регистрация">
@@ -23,7 +23,7 @@
                     <TextBox MinWidth="100" Margin="5" x:Name="ReLog"/>
                     <TextBlock Margin="5">Пароль</TextBlock>
                     <PasswordBox Margin="5" x:Name="RePas" />
-                    <Button Margin="5" x:Name="ReBut" Content="Зарегистрироваться" Click="ReBut_Click" />
+                    <Button Background="DarkOrange" Foreground="White" Margin="5" x:Name="ReBut" Content="Зарегистрироваться" Click="ReBut_Click" />
                 </StackPanel>
             </TabItem>
         </TabControl>

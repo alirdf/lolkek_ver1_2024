@@ -24,39 +24,73 @@ namespace lolkek.Win_
         public ViewEdit()
         {
             InitializeComponent();
+            var alltype  = DB_.lolkekEntities.GetContext().TbКатегории.ToList();
+            alltype.Insert(0, new DB_.TbКатегории
+            {
+                Название = "все типы"
+            });
+            CbСортировка.ItemsSource = alltype;
+            CbСортировка.SelectedIndex = 0;
             lv1.ItemsSource = lolkekEntities.GetContext().TbТовары.ToList();
+        }
+
+        private void Update()
+        {
+            var select = CbСортировка.SelectedItem as TbКатегории;
+            IQueryable<TbТовары> query = lolkekEntities.GetContext().TbТовары.Include(x => x.TbКатегории);
+            if (select.Код_Категории != 0)
+            {
+                query = query.Where(x => x.Категория == select.Код_Категории);
+            }
+
+            if (!string.IsNullOrEmpty(TbПоиск.Text))
+            {
+                query = query.Where(x => x.Название.Contains(TbПоиск.Text) || x.Описание.Contains(TbПоиск.Text));
+            }
+
+            switch (Cbфильтр.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    query = query.OrderBy(x => x.Название);
+                    break;
+                case 2:
+                    query = query.OrderByDescending(x => x.Название);
+                    break;
+            }
+
+            lv1.ItemsSource = query.ToList();
         }
 
         private void BtnРедактировать_Click(object sender, RoutedEventArgs e)
         {
-            Win_.AddEdit a = new Win_.AddEdit((sender as Button).DataContext as TbТовары);
+            Win_.AddEdit a = new Win_.AddEdit((sender as Button).
+            DataContext as TbТовары);
             a.Show();
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TbПоиск_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void CbСортировка_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Cbфильтр_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void BtnДобавить_Click(object sender, RoutedEventArgs e)
         {
             Win_.AddEdit a = new Win_.AddEdit(null);
             a.Show();
         }
+      
+
+        private void TbПоиск_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void CbСортировка_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void Cbфильтр_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
 
         private void BtnУдалить_Click(object sender, RoutedEventArgs e)
         {
@@ -74,6 +108,13 @@ namespace lolkek.Win_
                 }
             }
             catch { MessageBox.Show("Ошибка"); }
+        }
+
+        private void BtnНазад_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow a = new MainWindow();
+            a.Show();
+            this.Close();
         }
     }
 }

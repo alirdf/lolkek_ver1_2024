@@ -59,10 +59,10 @@ namespace lolkek
                 case 0:
                     break;
                 case 1:
-                    query = query.OrderByDescending(t => t.Название);
+                    query = query.OrderBy(t => t.Название);
                     break;
                 case 2:
-                    query = query.OrderBy(t => t.Название);
+                    query = query.OrderByDescending(t => t.Название);
                     break;
             }
 
@@ -90,7 +90,7 @@ namespace lolkek
         {
             Win_.Auto a = new Win_.Auto();
             a.Show();
-            this.Close();
+            
         }
     }
 }

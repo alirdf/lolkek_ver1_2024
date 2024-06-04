@@ -11,13 +11,45 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Margin="9">Поиск</TextBlock>
-            <TextBox MinWidth="100" Margin="5" x:Name="TbПоиск" TextChanged="TbПоиск_TextChanged" ></TextBox>
-            <ComboBox Margin="5" x:Name="Cbфильтр" SelectionChanged="Cbфильтр_SelectionChanged" />
-            <ComboBox Margin="5" x:Name="CbСортировка" SelectionChanged="CbСортировка_SelectionChanged"/>
-            <Button Content="Добавить" Margin="5" x:Name="BtnДобавить" Click="BtnДобавить_Click"/>
-            <Button Content="Удалить" Margin="5" x:Name="BtnУдалить" Click="BtnУдалить_Click"/>
+            <TextBox MinWidth="100" 
+                     Margin="5" 
+                     x:Name="TbПоиск" 
+                     TextChanged="TbПоиск_TextChanged" ></TextBox>
+            <ComboBox Margin="5" 
+                      x:Name="Cbфильтр" 
+                      SelectionChanged="Cbфильтр_SelectionChanged">
+                <ComboBoxItem>По умолчанию</ComboBoxItem>
+                <ComboBoxItem>По возрастнию</ComboBoxItem>
+                <ComboBoxItem>По убыванию</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Margin="5" 
+                      x:Name="CbСортировка" 
+                      SelectionChanged="CbСортировка_SelectionChanged"
+                      DisplayMemberPath="Название"
+                      />
+            <Button Content="Добавить" 
+                    Margin="5" 
+                    Background="DarkOrange"
+                    Foreground="White"
+                    FontFamily="Arial Black"
+                    x:Name="BtnДобавить" 
+                    Click="BtnДобавить_Click"/>
+            <Button Content="Удалить" 
+                    Margin="5" 
+                    Background="DarkOrange"
+                    Foreground="White"
+                    FontFamily="Arial Black"
+                    x:Name="BtnУдалить" 
+                    Click="BtnУдалить_Click"/>
+            <Button Content="Назад" 
+                    Margin="5" 
+                Background="DarkOrange"
+Foreground="White"
+FontFamily="Arial Black"
+                    x:Name="BtnНазад" 
+                    Click="BtnНазад_Click"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1">
             <ListView x:Name="lv1">
@@ -44,7 +76,7 @@
                                     <TextBlock Margin="5" Text="Стоимость"/>
                                     <TextBlock Margin="5" Text="{Binding Стоимость}"/>
                                 </StackPanel>
-                                
+
                                 <Button Content="Редактировать" x:Name="BtnРедактировать" Click="BtnРедактировать_Click"/>
                             </StackPanel>
                         </StackPanel>
